@@ -10,8 +10,14 @@ const PostBlog = () => {
   const titleRef = useRef<HTMLInputElement>(null)
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
 
-  const postBlog = api.post.postBlog.useMutation()
+  // const postBlog = api.post.postBlog.useMutation()
   const router = useRouter()
+
+  const postBlog = api.post.postBlog.useMutation({
+    onSuccess: () => {
+      router.refresh()
+    },
+  })
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
