@@ -35,6 +35,7 @@ export const postRouter = createTRPCRouter({
     return ctx.db.post.findMany()
   }),
 
+  // ブログ投稿
   postBlog: publicProcedure
     .input(z.object({ title: z.string(), description: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -59,7 +60,7 @@ export const postRouter = createTRPCRouter({
       })
     }),
 
-  // ブログ記事を取得する
+  // ブログ記事削除
   deleteBlog: publicProcedure
     .input(z.object({ id: z.number() }))
     .mutation(({ ctx, input }) => {
