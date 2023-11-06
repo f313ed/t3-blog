@@ -29,4 +29,9 @@ export const postRouter = createTRPCRouter({
       orderBy: { createdAt: "desc" },
     });
   }),
+
+  // // ブログ記事を全て取得する
+  getAllBlogs: publicProcedure.query(({ ctx }) => {
+    return ctx.db.post.findMany();
+  }),
 });
