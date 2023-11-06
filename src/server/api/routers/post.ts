@@ -34,4 +34,20 @@ export const postRouter = createTRPCRouter({
   getAllBlogs: publicProcedure.query(({ ctx }) => {
     return ctx.db.post.findMany();
   }),
+
+  postBlog: publicProcedure
+    .input(z.object({ title: z.string(), description: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const postBlog = await ctx.db.post.create({
+        data: {
+          name: input.title,
+          title: input.title,
+          description: input.description,
+        },
+      });
+      return postBlog;
+    }),
+
+
+
 });
